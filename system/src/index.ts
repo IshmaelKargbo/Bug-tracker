@@ -1,8 +1,6 @@
-import app, {PORT} from "./app";
-import { Request, Response } from "express";
+import App from "./app";
+import { PORT } from "./config/env";
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, TypeScript Express!!!");
-});
+const app = new App(PORT);
 
-app.listen(PORT);
+app.listen();
