@@ -1,7 +1,7 @@
 import { Router, Response, Request } from "express";
 
 class UserController {
-  public path: string = "/users";
+  public path: string = "users";
   public router: Router = Router();
 
   constructor() {
