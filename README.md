@@ -1,2 +1,3 @@
 # Bug-tracker
- Track bugs
+
+Track bugs
