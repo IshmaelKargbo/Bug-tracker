@@ -1,30 +1,38 @@
+version: '3.8'
+
+volumes:
+  pg_data: {}
+
 services:
   postgres:
     container_name: postgres
-    image: postgres:latest
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
-      - /data/postgres:/data/postgres
-    env_file:
-      - docker.env
-    networks:
-      - bug
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "sh -c 'pg_db is ready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
  
   pgadmin:
-    links:
-      - postgres:postgres
-    container_name: pgadmin
-    image: dpage/pgadmin4
+    container_name: pg_admin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: 5050
+    depends_on:
+      - postgres
     ports:
-      - "8080:80"
-    volumes:
-      - /data/pgadmin:/root/.pgadmin
-    env_file:
-      - docker.env
-    networks:
-      - bug
- 
-networks:
-  bug:
-    driver: bridge
+      - "5050:5050"
