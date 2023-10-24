@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import morgan from "morgan";
 import * as bodyParser from "body-parser";
+import { PREFIX } from "./config/env";
 
 class App {
   public app: Application;
@@ -21,7 +22,7 @@ class App {
 
   private initControllers(controllers) {
     controllers.forEach((controller) => {
-      this.app.use('/api/v1', controller.router);
+      this.app.use(PREFIX, controller.router);
     });
   }
 
