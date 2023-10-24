@@ -6,16 +6,23 @@ class App {
   public app: Application;
   public port: number;
 
-  constructor(port: number) {
+  constructor(controllers, port: number) {
     this.app = express();
     this.port = port;
 
     this.initMiddleware();
+    this.initControllers(controllers);
   }
 
   private initMiddleware() {
     this.app.use(bodyParser.json());
     this.app.use(morgan("combined"));
+  }
+
+  private initControllers(controllers) {
+    controllers.forEach((controller) => {
+      this.app.use('/api/v1', controller.router);
+    });
   }
 
   public listen() {
