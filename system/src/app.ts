@@ -3,7 +3,7 @@ import morgan from "morgan";
 import * as bodyParser from "body-parser";
 import { PREFIX } from "./config/env";
 import DB from "./config/orm";
-import ErrorMiddleware from "./middleware/exceptions/middleware";
+import ErrorMiddleware from "./exceptions/middleware";
 
 class App {
   public app: Application;

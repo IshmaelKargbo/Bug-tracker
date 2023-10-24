@@ -1,9 +1,10 @@
 import { Router, Response, Request, NextFunction } from "express";
 import UserService from "./service";
 import { UserDTO } from "./user";
-import HttpException from "../../middleware/exceptions/exceptions";
+import HttpException from "../../exceptions/exception";
 import { isUUID } from "class-validator";
 import { validationPipe } from "../../common/validation";
+import { ErrorCode } from "../../exceptions/code";
 
 class UserController {
   public path: string = "/users";
@@ -18,7 +19,7 @@ class UserController {
     try {
       const dto = await validationPipe(UserDTO, { ...req.body }).catch(
         (errors) => {
-          next(new HttpException(400, "Bad request", errors));
+          next(new HttpException(ErrorCode.BadRequest, "Bad request", errors));
           return;
         }
       );
@@ -46,14 +47,14 @@ class UserController {
       const id = req.params.id;
 
       if (!isUUID(id)) {
-        next(new HttpException(400, `Invalid uuid ${id}`));
+        next(new HttpException(ErrorCode.BadRequest, `Invalid uuid ${id}`));
         return;
       }
 
       const user = await this.service.findOne(id);
 
       if (user) res.send(user);
-      else next(new HttpException(404, `No user found for this id ${id}`));
+      else next(new HttpException(ErrorCode.NotFound, `No user found for this id ${id}`));
     } catch (error) {
       next(error);
     }
