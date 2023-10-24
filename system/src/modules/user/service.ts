@@ -1,4 +1,6 @@
 import DB from "../../config/orm";
+import { ErrorCode } from "../../exceptions/code";
+import HttpException from "../../exceptions/exception";
 import User, { UserDTO } from "./user";
 import UserEntity from "./user.entity";
 
@@ -7,6 +9,10 @@ class UserService {
 
   async create(userDTO: UserDTO): Promise<User> {
     
+    const one = await this.repo.findOne({ where: { email: userDTO.email } });
+
+    if (one) throw new HttpException(ErrorCode.NotAcceptable, `User already exist with this email ${userDTO.email}`);
+
     const user = await this.repo.save(userDTO);
 
     return this.toUser(user);
