@@ -3,6 +3,7 @@ import UserService from "./service";
 import { UserDTO } from "./user";
 import HttpException from "../../middleware/exceptions/exceptions";
 import { isUUID } from "class-validator";
+import { validationPipe } from "../../common/validation";
 
 class UserController {
   public path: string = "/users";
@@ -13,32 +14,49 @@ class UserController {
     this.init();
   }
 
-  create = async (req: Request, res: Response) => {
-    const dto = req.body;
-    
-    const user = await this.service.create(dto);
+  create = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const dto = await validationPipe(UserDTO, { ...req.body }).catch(
+        (errors) => {
+          next(new HttpException(400, "Bad request", errors));
+          return;
+        }
+      );
 
-    res.send(user);
+      const user = await this.service.create(dto);
+
+      res.send(user);
+    } catch (error) {
+      next(error);
+    }
   };
 
-  findAll = async (_: Request, res: Response) => {
-    const list = await this.service.findAll();
+  findAll = async (_: Request, res: Response, next: NextFunction) => {
+    try {
+      const list = await this.service.findAll();
 
-    res.send(list);
+      res.send(list);
+    } catch (error) {
+      next(error);
+    }
   };
 
   findOne = async (req: Request, res: Response, next: NextFunction) => {
-    const id = req.params.id;
+    try {
+      const id = req.params.id;
 
-    if (!isUUID(id)) {
-      next(new HttpException(400, `Invalid uuid ${id}`));
-      return;
-    }
+      if (!isUUID(id)) {
+        next(new HttpException(400, `Invalid uuid ${id}`));
+        return;
+      }
 
-    this.service.findOne(id).then((user) => {
+      const user = await this.service.findOne(id);
+
       if (user) res.send(user);
       else next(new HttpException(404, `No user found for this id ${id}`));
-    });
+    } catch (error) {
+      next(error);
+    }
   };
 
   private init() {

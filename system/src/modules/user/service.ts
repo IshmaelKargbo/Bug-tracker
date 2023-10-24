@@ -6,7 +6,8 @@ class UserService {
   private repo = DB.getRepository(UserEntity);
 
   async create(userDTO: UserDTO): Promise<User> {
-    const user = await this.repo.create(userDTO);
+    
+    const user = await this.repo.save(userDTO);
 
     return this.toUser(user);
   }

@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 import UserEntity from "./user.entity";
-import * as yup from "yup";
+import { IsEmail } from "class-validator";
 
 class User {
   id: string;
@@ -27,20 +27,10 @@ class User {
 }
 
 export class UserDTO {
+
+  @IsEmail()
   email: string;
 
-  async validate() {
-    const schema = yup
-      .object({
-        email: yup.string().required().email(),
-      })
-      .required();
-    const res = schema.validateSync(this, { abortEarly: false, stripUnknown: true });
-
-    console.log(res);
-    
-    return false;
-  }
 }
 
 export default User;

@@ -6,10 +6,10 @@ class UserEntity {
   @PrimaryGeneratedColumn("uuid")
   public id: string;
 
-  @Column({name: 'given_names'})
+  @Column({name: 'given_names', nullable: true})
   public givenNames: string;
   
-  @Column({name: 'family_name'})
+  @Column({name: 'family_name', nullable: true})
   public familyName: string;
 
   @Index()
@@ -17,10 +17,10 @@ class UserEntity {
   public email: string;
 
   @Index()
-  @Column({name: "user_name"})
+  @Column({name: "user_name", nullable: true})
   public userName: string;
 
-  @Column()
+  @Column({nullable: true})
   public password: string;
  
   @CreateDateColumn({name: 'created_at'})
