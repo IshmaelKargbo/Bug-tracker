@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { DBConfig } from './config/interface';
+import { UserHttpModule } from './modules/user/user.http.module';
 
 @Module({
   imports: [
@@ -29,8 +30,7 @@ import { DBConfig } from './config/interface';
         };
       },
     }),
+    UserHttpModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
