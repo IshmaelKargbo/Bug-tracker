@@ -1,25 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import User from './user.entity';
+import UserEntity from './user.entity';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private repository: Repository<User>,
+    @InjectRepository(UserEntity)
+    private repository: Repository<UserEntity>,
     private dataSource: DataSource,
   ) {}
 
-  create(): Promise<User> {
-    return null;
+  async create(email: string): Promise<UserEntity> {
+    const user = new UserEntity();
+
+    user.email = email;
+
+    const check = await this.repository.findOne({ where: { email } });
+
+    if (check) throw new Error(`user already exist with this email ${email}`);
+
+    return this.repository.save(user);
   }
 
-  findAll(): Promise<User[]> {
+  findAll(): Promise<UserEntity[]> {
     return this.repository.find();
   }
 
-  findOne(id: string): Promise<User | null> {
+  findOne(id: string): Promise<UserEntity | null> {
     return this.repository.findOneBy({ id });
   }
 }
