@@ -1,62 +1,46 @@
 <template>
-  <div class="dark:text-gray-300 py-6 text-gray-500 px-5 drop-shadow-2xl dark:bg-slate-950">
-    <Logo class="px-4" to="/" />
-    <ul class="mt-6">
-      <li>
-        <NuxtLink
-          to="/"
-          class="hover:bg-slate-900 dark:text-gray-400 space-x-3 rounded-md hover:text-gray-100 p-3 px-4 flex items-center"
-        >
-          <Icon name="bx:home" class="text-xl mb-1" />
-          <span>Dashboard</span>
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/"
-          class="hover:bg-slate-900 dark:text-gray-400 space-x-3 rounded-md hover:text-gray-100 p-3 px-4 flex items-center"
-        >
-          <Icon name="ep:data-board" class="text-xl mb-1" />
-          <span>Board</span>
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/"
-          class="hover:bg-slate-900 dark:text-gray-400 space-x-3 rounded-md hover:text-gray-100 p-3 px-4 flex items-center"
-        >
-          <Icon name="lucide:projector" class="text-xl mb-1" />
-          <span>Project</span>
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/"
-          class="hover:bg-slate-900 dark:text-gray-400 space-x-3 rounded-md hover:text-gray-100 p-3 px-4 flex items-center"
-        >
-          <Icon name="icon-park-outline:ticket" class="text-xl mb-1" />
-          <span>Ticket</span>
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/"
-          class="hover:bg-slate-900 dark:text-gray-400 space-x-3 rounded-md hover:text-gray-100 p-3 px-4 flex items-center"
-        >
-          <Icon name="icon-park-outline:permissions" class="text-xl mb-1" />
-          <span>Permission</span>
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/"
-          class="hover:bg-slate-900 dark:text-gray-400 space-x-3 rounded-md hover:text-gray-100 p-3 px-4 flex items-center"
-        >
-          <Icon name="ep:person" class="text-xl mb-1" />
-          <span>Employee</span>
-        </NuxtLink>
-      </li>
-    </ul>
+  <div
+    class="dark:text-gray-300 flex flex-col justify-between py-6 text-gray-500 px-5 drop-shadow-2xl dark:bg-slate-950"
+  >
+    <div>
+      <Logo class="px-4" to="/" />
+      <ul class="mt-6">
+        <li>
+          <MenuItem to="/">
+            <Icon name="bx:home" class="text-xl mb-1" />
+            <span>Dashboard</span>
+          </MenuItem>
+        </li>
+        <li>
+          <MenuItem to="/board">
+            <Icon name="ep:data-board" class="text-xl mb-1" />
+            <span>Board</span>
+          </MenuItem>
+        </li>
+        <li>
+          <MenuItem to="/project">
+            <Icon name="lucide:projector" class="text-xl mb-1" />
+            <span>Project</span>
+          </MenuItem>
+        </li>
+        <li>
+          <MenuItem to="/ticket">
+            <Icon name="icon-park-outline:ticket" class="text-xl mb-1" />
+            <span>Ticket</span>
+          </MenuItem>
+        </li>
+        <li>
+          <MenuItem to="/employee">
+            <Icon name="fa-solid:users" class="text-xl mb-1" />
+            <span>Employee</span>
+          </MenuItem>
+        </li>
+      </ul>
+    </div>
+    <MenuItem to="/profile">
+      <Icon name="fa-solid:user" class="text-xl mb-1" />
+      <span>Profile</span>
+    </MenuItem>
   </div>
 </template>
 
