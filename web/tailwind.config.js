@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ["Inter"],
-        roboto: ["Roboto"],
+        open: ["Open Sans"],
         poppins: ["Poppins"],
         caveat: ["Caveat"]
       },
