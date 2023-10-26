@@ -1,5 +1,5 @@
 <template>
-  <main class="font-poppins">
+  <main class="font-poppins text-sm">
     <slot />
   </main>
 </template>
