@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   ui: {},
   googleFonts: {
     families: {
-      Roboto: true,
+      'Open Sans': true,
       Poppins: [300],
       Caveat: [700],
       Inter: [200, 500, 700],
