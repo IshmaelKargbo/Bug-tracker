@@ -5,8 +5,9 @@ export default defineNuxtConfig({
     families: {
       Roboto: true,
       Poppins: [300],
-      Inter: [300, 500, 700],
+      Caveat: [700],
+      Inter: [200, 500, 700],
     },
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "nuxt-icon"],
 });
