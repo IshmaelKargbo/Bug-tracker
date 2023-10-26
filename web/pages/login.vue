@@ -1,30 +1,27 @@
 <template>
   <div
-    class="bg-gray-50 dark:bg-gray-900 flex min-h-screen items-center justify-center"
+    class="flex min-h-screen items-center justify-center"
   >
-    <div class="w-2/6 flex flex-col h-screen">
+    <div class="md:w-1/4 w-2/6 flex flex-col h-screen">
       <div class="flex-1 h-full items-center flex">
         <div class="w-full">
           <div class="mb-6">
-            <p class="text-2xl mb-0.5 font-inter dark:text-white">
-              Welcome Back
-            </p>
+            <Logo class="mb-3" to="/" />
             <p class="text-sm text-gray-400">Sign in to your account</p>
           </div>
           <div>
-            <Button class="mb-5 space-x-1 items-center flex justify-center">
-              <Icon name="line-md:github-loop" class="text-lg" />
+            <UButton class="w-full flex justify-center -space-x-1 mb-2" size="xl" variant="outline" color="gray">
+              <Icon name="line-md:github-loop" />
               <span>Continue with Github</span>
-              </Button
-            >
-            <Button class="space-x-1 items-center flex justify-center">
-              <Icon name="ant-design:google-outlined" class="text-lg" />
+            </UButton>
+            <UButton class="w-full flex justify-center -space-x-1" size="xl" variant="outline" color="gray">
+              <Icon name="fe:google" />
               <span>Continue with Google</span>
-            </Button>
+            </UButton>
             <div class="flex items-center mt-6 mb-5">
-              <hr class="flex-1 dark:border-gray-700" />
+              <hr class="flex-1 border-gray-300 dark:border-gray-700" />
               <p class="px-2.5 dark:text-gray-400 text-xs">OR</p>
-              <hr class="flex-1 dark:border-gray-700" />
+              <hr class="flex-1 border-gray-300 dark:border-gray-700" />
             </div>
             <form @submit.prevent>
               <div class="mb-5">
@@ -49,7 +46,7 @@
                   placeholder="********"
                 />
               </div>
-              <Button primary> Login </Button>
+              <UButton class="w-full flex justify-center" size="xl">Login</UButton>
             </form>
             <div class="flex space-x-1 text-sm mt-8 justify-center">
               <p class="text-gray-400">Don't have an account?</p>
