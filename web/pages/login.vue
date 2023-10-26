@@ -12,8 +12,15 @@
             <p class="text-sm text-gray-400">Sign in to your account</p>
           </div>
           <div>
-            <Button class="mb-5">Continue with Github</Button>
-            <Button> Continue with Google</Button>
+            <Button class="mb-5 space-x-1 items-center flex justify-center">
+              <Icon name="line-md:github-loop" class="text-lg" />
+              <span>Continue with Github</span>
+              </Button
+            >
+            <Button class="space-x-1 items-center flex justify-center">
+              <Icon name="ant-design:google-outlined" class="text-lg" />
+              <span>Continue with Google</span>
+            </Button>
             <div class="flex items-center mt-6 mb-5">
               <hr class="flex-1 dark:border-gray-700" />
               <p class="px-2.5 dark:text-gray-400 text-xs">OR</p>
@@ -42,12 +49,7 @@
                   placeholder="********"
                 />
               </div>
-              <Button
-                primary
-                @click="toggleDark()"
-              >
-                Login
-              </Button>
+              <Button primary> Login </Button>
             </form>
             <div class="flex space-x-1 text-sm mt-8 justify-center">
               <p class="text-gray-400">Don't have an account?</p>
@@ -74,14 +76,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useDark, useToggle } from "@vueuse/core";
-
-const isDark = useDark();
-
-const toggleDark = useToggle(isDark);
-
-console.log(isDark.value);
-
 definePageMeta({
   layout: "custom",
 });
