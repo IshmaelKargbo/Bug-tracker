@@ -10,8 +10,14 @@
             <p class="text-sm text-gray-400">Create an account</p>
           </div>
           <div>
-            <Button class="mb-5">Continue with Github</Button>
-            <Button> Continue with Google</Button>
+            <Button class="mb-5 space-x-1 items-center flex justify-center">
+              <Icon name="line-md:github-loop" class="text-xl" />
+              <span>Continue with Github</span>
+            </Button>
+            <Button class="space-x-1 items-center flex justify-center">
+              <Icon name="ant-design:google-outlined" class="text-xl" />
+              <span>Continue with Google</span>
+            </Button>
             <div class="flex items-center mt-6 mb-5">
               <hr class="flex-1 dark:border-gray-700" />
               <p class="px-2.5 dark:text-gray-400 text-xs">OR</p>
@@ -30,7 +36,9 @@
             </form>
             <div class="flex space-x-1 text-sm mt-8 justify-center">
               <p class="text-gray-400">Have an account?</p>
-              <NuxtLink to="/login" class="underline text-emerald-600">Login Now</NuxtLink>
+              <NuxtLink to="/login" class="underline text-emerald-600"
+                >Login Now</NuxtLink
+              >
             </div>
           </div>
         </div>
@@ -38,9 +46,13 @@
       <div class="py-8">
         <p class="text-xs text-center dark:text-gray-300">
           By continuing, you agree to Bug Tracker
-          <NuxtLink to="/login" class="underline text-emerald-600">Terms of Service</NuxtLink>
-          and <NuxtLink to="/login" class="underline text-emerald-600">Privacy Policy</NuxtLink>,
-          and to receive periodic emails with updates.
+          <NuxtLink to="/login" class="underline text-emerald-600"
+            >Terms of Service</NuxtLink
+          >
+          and
+          <NuxtLink to="/login" class="underline text-emerald-600"
+            >Privacy Policy</NuxtLink
+          >, and to receive periodic emails with updates.
         </p>
       </div>
     </div>
