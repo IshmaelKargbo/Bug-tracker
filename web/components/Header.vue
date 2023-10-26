@@ -16,12 +16,7 @@
           <ColorModeButton />
         </li>
         <li>
-          <UAvatar
-            chip-color="primary"
-            chip-position="bottom-right"
-            icon="i-heroicons-photo"
-            size="sm"
-          />
+          <Profile />
         </li>
       </ul>
     </div>
