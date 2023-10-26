@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 interface Props {
-  onClick: () => void;
-  primary: boolean
+  onClick?: () => void;
+  primary?: boolean
 }
 
 const { onClick, primary } = defineProps<Props>();
