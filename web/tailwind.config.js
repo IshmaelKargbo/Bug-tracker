@@ -7,7 +7,8 @@ export default {
       fontFamily: {
         inter: ["Inter"],
         roboto: ["Roboto"],
-        poppins: ["Poppins"]
+        poppins: ["Poppins"],
+        caveat: ["Caveat"]
       },
     },
   },
