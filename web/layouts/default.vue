@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen font-poppins text-base">
+  <div class="flex h-screen font-poppins text-sm">
     <Menu class="bg-gray-900 text-gray-200 w-60" />
     <main class="flex-1 flex-col bg-gray-100 flex">
         <Header />
