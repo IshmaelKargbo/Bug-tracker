@@ -1,11 +1,14 @@
+import { OmitType } from '@nestjs/mapped-types';
 import { IsEmail, IsUUID } from 'class-validator';
 
-export class CreateUserDto {
+class UserDto {
   @IsEmail()
   email: string;
-}
 
-export class FindOneParams {
   @IsUUID()
   id: string;
 }
+
+export class CreateUserDto extends OmitType(UserDto, ['id'] as const) {}
+
+export class FindOneParams extends OmitType(UserDto, ['email'] as const) {}

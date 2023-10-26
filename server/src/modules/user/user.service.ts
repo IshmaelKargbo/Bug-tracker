@@ -12,9 +12,9 @@ export class UserService {
   ) {}
 
   async create(email: string): Promise<UserEntity> {
-    const user = new UserEntity();
-
-    user.email = email;
+    const user = new UserEntity({
+      email,
+    });
 
     const check = await this.repository.findOne({ where: { email } });
 

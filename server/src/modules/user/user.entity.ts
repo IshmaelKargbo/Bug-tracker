@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -27,13 +28,20 @@ class UserEntity {
   public userName: string;
 
   @Column({ nullable: true })
+  @Exclude()
   public password: string;
 
   @CreateDateColumn({ name: 'created_at' })
+  @Exclude()
   public createAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
+  @Exclude()
   public updateAt: Date;
+
+  constructor(partial: Partial<UserEntity>) {
+    Object.assign(this, partial);
+  }
 }
 
 export default UserEntity;
