@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { DBConfig } from './config/interface';
 import { UserHttpModule } from './modules/user/user.http.module';
+import { HealthModule } from './modules/monitor/health/health.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UserHttpModule } from './modules/user/user.http.module';
       },
     }),
     UserHttpModule,
+    HealthModule,
   ],
 })
 export class AppModule {}
