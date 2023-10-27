@@ -6,8 +6,8 @@
         <Header />
         <div class="flex-1 overflow-y-auto">
           <slot />
-          <footer class="px-5">
-          <p>© 2023 , made with ❤️ by Ishmael Kargbo</p>
+          <footer class="px-5 flex justify-between">
+          <p>© 2023</p><p>Design with ❤️ by Ishmael Kargbo</p>
         </footer>
         </div>
       </main>
