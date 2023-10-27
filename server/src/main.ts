@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import * as Sentry from '@sentry/node';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './pipes/exception';
 
@@ -11,6 +12,10 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+  Sentry.init({
+    dsn: 'http://ibug.com',
+  });
 
   app.useGlobalFilters(new HttpExceptionFilter());
 

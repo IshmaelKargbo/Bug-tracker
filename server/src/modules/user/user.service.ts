@@ -1,5 +1,6 @@
 import {
   Injectable,
+  Logger,
   NotAcceptableException,
   NotFoundException,
 } from '@nestjs/common';
@@ -10,6 +11,8 @@ import ConfirmationEntity from './confirmation.entity';
 
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name);
+
   constructor(
     @InjectRepository(UserEntity)
     private repository: Repository<UserEntity>,
@@ -20,10 +23,11 @@ export class UserService {
   async create(email: string): Promise<UserEntity> {
     const check = await this.repository.findOne({ where: { email } });
 
-    if (check)
-      throw new NotAcceptableException(
-        `user already exist with this email ${email}`,
-      );
+    if (check) {
+      const msg = `user already exist with this email ${email}`;
+      this.logger.error(msg);
+      throw new NotAcceptableException(msg);
+    }
 
     const code = new ConfirmationEntity({});
 
