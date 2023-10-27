@@ -4,9 +4,12 @@ import {
   CreateDateColumn,
   Entity,
   Index,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import ConfirmationEntity from './confirmation.entity';
 
 @Entity('user')
 class UserEntity {
@@ -30,6 +33,10 @@ class UserEntity {
   @Column({ nullable: true })
   @Exclude()
   public password: string;
+
+  @OneToOne(() => ConfirmationEntity)
+  @JoinColumn()
+  public confirmation: ConfirmationEntity;
 
   @CreateDateColumn({ name: 'created_at' })
   @Exclude()
