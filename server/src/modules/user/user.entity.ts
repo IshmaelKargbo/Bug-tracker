@@ -4,12 +4,9 @@ import {
   CreateDateColumn,
   Entity,
   Index,
-  JoinColumn,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import ConfirmationEntity from './confirmation.entity';
 
 @Entity('user')
 class UserEntity {
@@ -22,21 +19,15 @@ class UserEntity {
   @Column({ name: 'family_name', nullable: true })
   public familyName: string;
 
+  @Column({ nullable: true })
+  public image: string;
+
+  @Column({ nullable: true })
+  public provider: string;
+
   @Index()
   @Column({ unique: true })
   public email: string;
-
-  @Index()
-  @Column({ name: 'user_name', nullable: true })
-  public userName: string;
-
-  @Column({ nullable: true })
-  @Exclude()
-  public password: string;
-
-  @OneToOne(() => ConfirmationEntity)
-  @JoinColumn()
-  public confirmation: ConfirmationEntity;
 
   @CreateDateColumn({ name: 'created_at' })
   @Exclude()

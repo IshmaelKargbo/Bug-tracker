@@ -5,21 +5,18 @@ import {
   Get,
   Param,
   Post,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import UserEntity from './user.entity';
-import { CreateUserDto, FindOneParams } from './user.dto';
+import { FindOneParams } from './user.dto';
+import { AuthenticatedGuard } from '../auth/authenticated.guard';
 
+@UseGuards(AuthenticatedGuard)
 @Controller('user')
 export class UserController {
   constructor(private readonly service: UserService) {}
-
-  @UseInterceptors(ClassSerializerInterceptor)
-  @Post()
-  create(@Body() dto: CreateUserDto): Promise<UserEntity> {
-    return this.service.create(dto.email);
-  }
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get()

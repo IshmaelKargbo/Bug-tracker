@@ -3,8 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { DBConfig } from './config/interface';
-import { UserHttpModule } from './modules/user/user.http.module';
+import { UserHttpModule } from './modules/user/module/http.module';
 import { HealthModule } from './modules/monitor/health/health.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { HealthModule } from './modules/monitor/health/health.module';
     }),
     UserHttpModule,
     HealthModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

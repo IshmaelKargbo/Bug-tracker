@@ -4,3 +4,13 @@ database:
   db: 'bug_tracker'
   user: 'admin'
   password: 'admin'
+google:
+  secret: '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'
+  clientID: '798341407679-s95si1ijre33ju067k657kciif9ots74.apps.googleusercontent.com'
+  callback: 'http://localhost:4000/auth/google-redirect'
+github:
+  clientID: '5afccc5ae0fbbf9ac0cb'
+  secret: '94a6d643ccf51036a5c93f0f3384a93f59a85a08'
+  callback: 'http://localhost:4000/auth/github-redirect'
+jwt:
+  secret: 'RLOT52OJ6fBW9QuKMasIzGXilpULPx6z'

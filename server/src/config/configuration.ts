@@ -9,3 +9,9 @@ export default () => {
     readFileSync(join(__dirname, YAML_CONFIG_FILENAME), 'utf8'),
   ) as Record<string, any>;
 };
+
+export interface AuthConfig {
+  clientID: string;
+  secret: string;
+  callback: string;
+}
