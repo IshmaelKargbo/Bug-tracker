@@ -12,9 +12,7 @@
 </template>
 
 <script setup lang="ts">
-const { status, data, signIn, signOut } = useAuth()
-
 const handleSignIn = async () => {
-  await signIn();
+  window.open('http://localhost:4000/auth/github', "_self");
 };
 </script>
