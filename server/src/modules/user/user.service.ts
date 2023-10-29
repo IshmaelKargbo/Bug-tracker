@@ -7,6 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import UserEntity from './user.entity';
 import { Repository } from 'typeorm';
+import { AuthDTO, NewUserDTO } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -17,7 +18,7 @@ export class UserService {
     private repository: Repository<UserEntity>,
   ) {}
 
-  async findOrCreate(user: UserEntity): Promise<UserEntity> {
+  async findOrCreate(user: AuthDTO | NewUserDTO): Promise<UserEntity> {
     const check = await this.repository.findOne({
       where: { email: user.email },
     });
