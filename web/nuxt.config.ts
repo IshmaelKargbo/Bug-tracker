@@ -12,7 +12,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/google-fonts",
     "@nuxt/ui",
-    "nuxt-icon",
-    "@sidebase/nuxt-auth"
+    "nuxt-icon"
   ],
 });
