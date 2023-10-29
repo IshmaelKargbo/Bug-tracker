@@ -15,3 +15,7 @@ export interface AuthConfig {
   secret: string;
   callback: string;
 }
+
+export interface JwtConfig {
+  secret: string;
+}
