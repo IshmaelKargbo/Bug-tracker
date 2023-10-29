@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex min-h-screen items-center dark:text-white justify-center"
-  >
+  <div class="flex min-h-screen items-center dark:text-white justify-center">
     <div class="md:w-1/4 w-2/6 flex flex-col h-screen">
       <div class="flex-1 h-full items-center flex">
         <div class="w-full">
@@ -10,14 +8,8 @@
             <p class="text-sm text-gray-400">Create an account</p>
           </div>
           <div>
-            <UButton class="w-full flex justify-center -space-x-1 mb-2" size="xl" variant="outline" color="gray">
-              <Icon name="line-md:github-loop" />
-              <span>Continue with Github</span>
-            </UButton>
-            <UButton class="w-full flex justify-center -space-x-1" size="xl" variant="outline" color="gray">
-              <Icon name="fe:google" />
-              <span>Continue with Google</span>
-            </UButton>
+            <GithubButton />
+            <GoogleButton />
             <div class="flex items-center mt-6 mb-5">
               <hr class="flex-1 border-gray-300 dark:border-gray-700" />
               <p class="px-2.5 dark:text-gray-400 text-xs">OR</p>
@@ -32,7 +24,9 @@
                   placeholder="yes@example.com"
                 />
               </div>
-              <UButton class="w-full flex justify-center" size="xl">Register</UButton>
+              <UButton class="w-full flex justify-center" size="xl"
+                >Register</UButton
+              >
             </form>
             <div class="flex space-x-1 text-sm mt-8 justify-center">
               <p class="text-gray-400">Have an account?</p>
