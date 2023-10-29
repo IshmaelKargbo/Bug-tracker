@@ -9,15 +9,7 @@
           </div>
           <div>
             <GithubButton />
-            <UButton
-              class="w-full flex justify-center -space-x-1"
-              size="xl"
-              variant="outline"
-              color="gray"
-            >
-              <Icon name="fe:google" />
-              <span>Continue with Google</span>
-            </UButton>
+            <GoogleButton />
             <div class="flex items-center mt-6 mb-5">
               <hr class="flex-1 border-gray-300 dark:border-gray-700" />
               <p class="px-2.5 dark:text-gray-400 text-xs">OR</p>
