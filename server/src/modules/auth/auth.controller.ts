@@ -1,11 +1,20 @@
-import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Redirect,
+  Request,
+  Session,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from '../user/user.service';
 import UserEntity from '../user/user.entity';
+import { AuthDTO } from '../user/user.dto';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly service: UserService) {}
+  constructor(private readonly service: AuthService) {}
 
   @Get('github')
   @UseGuards(AuthGuard('github'))
@@ -20,13 +29,12 @@ export class AuthController {
   }
 
   @Get('github-redirect')
+  @Redirect('http://localhost:3000', 301)
   @UseGuards(AuthGuard('github'))
   async githubAuthRedirect(@Request() req) {
-    const accessToken = req.user.accessToken;
-    const refreshToken = req.user.refreshToken;
     const profile = req.user;
 
-    const dto = new UserEntity({
+    const dto: AuthDTO = new AuthDTO({
       email: profile.email,
       image: profile.image,
       familyName: profile.familyName,
@@ -34,19 +42,21 @@ export class AuthController {
       provider: profile.provider,
     });
 
-    const user = await this.service.findOrCreate(dto);
+    const accessToken = this.service.access(dto);
 
-    return { accessToken, refreshToken, user };
+    return { accessToken };
   }
 
   @Get('google-redirect')
+  @Redirect('http://localhost:3000', 301)
   @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(@Request() req) {
-    const accessToken = req.user.accessToken;
-    const refreshToken = req.user.refreshToken;
+  async googleAuthRedirect(
+    @Request() req,
+    @Session() session: Record<string, any>,
+  ) {
     const profile = req.user;
 
-    const dto = new UserEntity({
+    const dto: AuthDTO = new AuthDTO({
       email: profile.email,
       image: profile.image,
       familyName: profile.familyName,
@@ -54,8 +64,8 @@ export class AuthController {
       provider: profile.provider,
     });
 
-    const user = await this.service.findOrCreate(dto);
+    const accessToken = this.service.access(dto);
 
-    return { accessToken, refreshToken, user };
+    session.accessToken = accessToken;
   }
 }
