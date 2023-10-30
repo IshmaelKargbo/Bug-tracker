@@ -8,6 +8,7 @@ export class AuthService {
   constructor(private service: UserService, private jwt: JwtService) {}
 
   async access(dto: AuthDTO): Promise<any> {
-    return await this.service.findOrCreate(dto);
+    const user = await this.service.findOrCreate(dto);
+    return this.jwt.signAsync(user);
   }
 }
