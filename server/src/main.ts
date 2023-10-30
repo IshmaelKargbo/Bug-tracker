@@ -5,22 +5,28 @@ import { HttpExceptionFilter } from './pipes/exception';
 import { EmojiLogger } from './common/emoji-logger';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import { ConfigService } from '@nestjs/config';
+import { AppConfig } from './config/configuration';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new EmojiLogger(),
   });
 
+  const config = app.get(ConfigService);
+
+  const appConfig = config.get<AppConfig>('app');
+
   app.enableCors();
 
   app.use(
     session({
-      secret: 'McQfTjWmZq4t7w!z4u7x!A%D*F-JaNd',
+      secret: appConfig.session,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 5,
+        maxAge: 1000 * 60 * 60 * 6,
       },
     }),
   );
@@ -37,6 +43,6 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  await app.listen(4000);
+  await app.listen(appConfig.port);
 }
 bootstrap();
