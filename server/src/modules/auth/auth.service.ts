@@ -9,6 +9,7 @@ export class AuthService {
 
   async access(dto: AuthDTO): Promise<any> {
     const user = await this.service.findOrCreate(dto);
-    return this.jwt.signAsync(user);
+    const payload = user;
+    return this.jwt.signAsync(payload);
   }
 }
