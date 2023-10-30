@@ -1,14 +1,5 @@
-import {
-  Controller,
-  Get,
-  Redirect,
-  Request,
-  Session,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Redirect, Request, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { UserService } from '../user/user.service';
-import UserEntity from '../user/user.entity';
 import { AuthDTO } from '../user/user.dto';
 import { AuthService } from './auth.service';
 
@@ -30,7 +21,7 @@ export class AuthController {
 
   @Get('github-redirect')
   @Redirect('http://localhost:3000', 301)
-  @UseGuards(AuthGuard('github'))
+  @UseGuards(AuthGuard(['github', 'jwt']))
   async githubAuthRedirect(@Request() req) {
     const profile = req.user;
 
@@ -42,18 +33,13 @@ export class AuthController {
       provider: profile.provider,
     });
 
-    const accessToken = this.service.access(dto);
-
-    return { accessToken };
+    return this.service.access(dto);
   }
 
   @Get('google-redirect')
   @Redirect('http://localhost:3000', 301)
-  @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(
-    @Request() req,
-    @Session() session: Record<string, any>,
-  ) {
+  @UseGuards(AuthGuard(['github', 'jwt']))
+  async googleAuthRedirect(@Request() req) {
     const profile = req.user;
 
     const dto: AuthDTO = new AuthDTO({
@@ -64,8 +50,6 @@ export class AuthController {
       provider: profile.provider,
     });
 
-    const accessToken = this.service.access(dto);
-
-    session.accessToken = accessToken;
+    return this.service.access(dto);
   }
 }
