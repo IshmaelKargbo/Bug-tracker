@@ -20,7 +20,7 @@ export class AuthController {
   }
 
   @Get('github-redirect')
-  @Redirect('http://localhost:3000', 301)
+  // @Redirect('http://localhost:3000', 301)
   @UseGuards(AuthGuard(['github', 'jwt']))
   async githubAuthRedirect(@Request() req) {
     const profile = req.user;
@@ -37,7 +37,7 @@ export class AuthController {
   }
 
   @Get('google-redirect')
-  @Redirect('http://localhost:3000', 301)
+  // @Redirect('http://localhost:3000', 301)
   @UseGuards(AuthGuard(['github', 'jwt']))
   async googleAuthRedirect(@Request() req) {
     const profile = req.user;
