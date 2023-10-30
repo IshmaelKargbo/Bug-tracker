@@ -7,9 +7,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GoogleStrategy } from './strategy/google';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtConfig } from 'src/config/configuration';
+import { AppConfig } from 'src/config/configuration';
 import { JwtStrategy } from './strategy/jwt';
 import { AuthService } from './auth.service';
+import { SessionSerializer } from './session.serializer';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AuthService } from './auth.service';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const jConfig = config.get<JwtConfig>('jwt');
+        const jConfig = config.get<AppConfig>('app');
 
         return {
           secret: jConfig.secret,
@@ -34,6 +35,7 @@ import { AuthService } from './auth.service';
     GoogleStrategy,
     JwtStrategy,
     AuthService,
+    SessionSerializer,
   ],
   exports: [],
 })
