@@ -18,6 +18,7 @@ export interface AuthConfig {
 
 export interface AppConfig {
   secret: string;
+  refresh: string;
   session: string;
   port: string;
 }
