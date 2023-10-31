@@ -14,5 +14,6 @@ github:
   callback: 'http://localhost:4000/auth/github-redirect'
 app:
   secret: 'McQfTjWmZq4t7w!z4u7x!A%D*F-JaNd'
+  refresh: 'P79834mZq14076794tZq4t*iA%Wm7w7'
   session: 'SPX-Fw9cQfTjWmZq4t7w7x!A%WmZq4t'
   port: 4000
