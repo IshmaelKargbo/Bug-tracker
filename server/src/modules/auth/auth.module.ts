@@ -16,6 +16,7 @@ import { SessionSerializer } from './session.serializer';
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     JwtModule.registerAsync({
+      global: true,
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
@@ -23,7 +24,7 @@ import { SessionSerializer } from './session.serializer';
 
         return {
           secret: jConfig.secret,
-          signOptions: { expiresIn: '60s' },
+          signOptions: { expiresIn: '6h' },
         };
       },
     }),
