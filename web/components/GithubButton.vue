@@ -13,6 +13,10 @@
 
 <script setup lang="ts">
 const handleSignIn = async () => {
-  window.open('http://localhost:4000/auth/github', "_self");
+  const handle = window.open("http://localhost:4000/auth/github", "_self");
+  if (handle) {
+    handle.close();
+    console.log(handle);
+  }
 };
 </script>
