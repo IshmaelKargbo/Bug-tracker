@@ -13,6 +13,9 @@
 
 <script setup lang="ts">
 const handleSignIn = async () => {
-  window.open("http://localhost:4000/auth/google", "_self");
+  const handle = window.open("http://localhost:4000/auth/google", "_self");
+  if (handle) {
+    handle.close();
+  }
 };
 </script>
