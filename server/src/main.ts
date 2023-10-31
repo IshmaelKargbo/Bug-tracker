@@ -3,8 +3,6 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './pipes/exception';
 import { EmojiLogger } from './common/emoji-logger';
-import * as session from 'express-session';
-import * as passport from 'passport';
 import { ConfigService } from '@nestjs/config';
 import { AppConfig } from './config/configuration';
 
@@ -18,21 +16,6 @@ async function bootstrap() {
   const appConfig = config.get<AppConfig>('app');
 
   app.enableCors();
-
-  app.use(
-    session({
-      secret: appConfig.session,
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 6,
-      },
-    }),
-  );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   app.useGlobalPipes(
     new ValidationPipe({
